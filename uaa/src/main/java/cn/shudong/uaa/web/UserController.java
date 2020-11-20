@@ -1,6 +1,7 @@
 package cn.shudong.uaa.web;
 
 import cn.shudong.core.wrapper.GlobalResponseWrapper;
+import cn.shudong.security.core.Authority;
 import cn.shudong.uaa.pojo.dto.LoginDto;
 import cn.shudong.uaa.pojo.vo.LoginVo;
 import cn.shudong.uaa.service.LoginService;
@@ -37,6 +38,7 @@ public class UserController {
 
 
     @ApiOperation(value = "用户登录")
+    @Authority(isLogin = false, description = "账号密码登录")
     @PostMapping("login")
     public LoginVo login(@Valid @RequestBody LoginDto loginDto) {
         LoginVo loginVo = this.loginService.login(loginDto.getUsername(), loginDto.getPassword());
